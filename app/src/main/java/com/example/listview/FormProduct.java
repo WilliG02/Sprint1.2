@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class FormProduct extends AppCompatActivity {
 
-    private Button btnFormProduct, btnGetFormProduct, btnDeleteFormProduct;
+    private Button btnFormProduct, btnGetFormProduct, btnDeleteFormProduct, btnUpdateFormProduct;
     private EditText editNameFormProduct, editDescriptionFormProduct, editPriceFormProduct, editIdFormProduct;
     private ImageView imgFormProduct;
     private ActivityResultLauncher<String> content;
@@ -42,6 +42,7 @@ public class FormProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_product);
 
+        btnUpdateFormProduct = (Button) findViewById(R.id.btnUpdateFormProduct);
         btnGetFormProduct = (Button) findViewById(R.id.btnGetFormProduct);
         btnDeleteFormProduct = (Button) findViewById(R.id.btnDeleteFormProduct);
         btnFormProduct = (Button) findViewById(R.id.btnFormProduct);
@@ -120,7 +121,30 @@ public class FormProduct extends AppCompatActivity {
             public void onClick(View view) {
                 String id = editIdFormProduct.getText().toString().trim();
                 dbHelper.deleteProductById(id);
+                clean();
             }
         });
+
+        btnUpdateFormProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id = editIdFormProduct.getText().toString().trim();
+                if(id.compareTo("") != 0){
+                    dbHelper.updateProduct(id,editNameFormProduct.getText().toString(),
+                            editDescriptionFormProduct.getText().toString(),
+                            editPriceFormProduct.getText().toString(),
+                            productService.imageViewToBy(imgFormProduct));
+                }
+                clean();
+            }
+        });
+    }
+
+    // resetea todos los espacios
+    public void clean(){
+        editNameFormProduct.setText("");
+        editDescriptionFormProduct.setText("");
+        editPriceFormProduct.setText("");
+        imgFormProduct.setImageResource(R.drawable.ic_launcher_background);
     }
 }

@@ -66,7 +66,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     // UPDATE
-    public void udateProduct(String id, String name, String description, String price, byte[] image){
+    public void updateProduct(String id, String name, String description, String price, byte[] image){
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("description", description);
