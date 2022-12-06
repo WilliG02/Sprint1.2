@@ -1,24 +1,34 @@
 package com.example.listview.Entities;
 
 public class Product {
-    //private int id;
-    private int image;
+    private int id;
+    private byte[] image;
     private String name;
     private String description;
     private int price;
 
-    public Product(int image, String name, String description, int price) {
+    public Product(int id, byte[] image, String name, String description, int price) {
+        this.id = id;
         this.image = image;
         this.name = name;
         this.description = description;
         this.price = price;
+
     }
 
-    public int getImage() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

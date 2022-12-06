@@ -1,5 +1,6 @@
 package com.example.listview.DB;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -52,6 +53,27 @@ public class DbHelper extends SQLiteOpenHelper {
     public Cursor getProducts(){
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS" , null) ;
         return cursor;
+    }
+
+    // Consult by Id
+    public Cursor getProductsById(String id){
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS WHERE id = "+id , null) ;
+        return cursor;
+    }
+
+    public void deleteProductById(String id){
+        sqLiteDatabase.execSQL("DELETE FROM PRODUCTS WHERE id = " + id);
+    }
+
+    // UPDATE
+    public void udateProduct(String id, String name, String description, String price, byte[] image){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name", name);
+        contentValues.put("description", description);
+        contentValues.put("price", price);
+        contentValues.put("image", image);
+
+        sqLiteDatabase.update("PRODUCTS", contentValues, "id = ?", new String[]{id});
     }
 
 }

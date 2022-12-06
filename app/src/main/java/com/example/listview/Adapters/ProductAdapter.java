@@ -2,6 +2,8 @@ package com.example.listview.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +53,9 @@ public class ProductAdapter extends BaseAdapter {
         TextView tvDescriptionProduct = (TextView) view.findViewById(R.id.tvDescriptionProduct);
         TextView tvPriceProduct = (TextView) view.findViewById(R.id.tvPriceProduct);
 
-        imgProduct.setImageResource(product.getImage());
+        //imgProduct.setImageResource(product.getImage());
+        Bitmap bitmap = BitmapFactory.decodeByteArray(product.getImage(),0,product.getImage().length);
+        imgProduct.setImageBitmap(bitmap);
         tvNameProduct.setText(product.getName());
         tvDescriptionProduct.setText(product.getDescription());
         tvPriceProduct.setText(String.valueOf(product.getPrice()));
@@ -63,7 +67,7 @@ public class ProductAdapter extends BaseAdapter {
                 intent.putExtra("name" , product.getName());
                 intent.putExtra("description",product.getDescription());
                 intent.putExtra("price",product.getPrice());
-                intent.putExtra("image",product.getImage());
+                intent.putExtra("id",product.getId());
                 context.startActivity(intent);
             }
         });
