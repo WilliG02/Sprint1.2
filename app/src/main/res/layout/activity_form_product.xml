@@ -12,12 +12,12 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
-        android:text="FORM" />
+        android:textSize="60dp"
+        android:text="FORMULARIO" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -30,7 +30,6 @@
                 android:id="@+id/editIdFormProduct"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
                 android:ems="10"
                 android:inputType="number" />
 
@@ -38,15 +37,13 @@
                 android:id="@+id/btnGetFormProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
-                android:text="Consult" />
+                android:text="Consultar" />
 
             <Button
                 android:id="@+id/btnDeleteFormProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:text="Delete" />
 
@@ -60,75 +57,72 @@
 
         <ImageView
             android:id="@+id/imgFormProduct"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            tools:srcCompat="@drawable/ic_launcher_background" />
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            app:srcCompat="@drawable/ic_launcher_background" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-
             <TextView
-                android:id="@+id/tvNameForm1"
-                android:layout_width="60dp"
+                android:id="@+id/textNameFormProduct"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name" />
+                android:text="Nombre" />
             <EditText
                 android:id="@+id/editNameFormProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-
             <TextView
-                android:id="@+id/tvDescriptionForm"
-                android:layout_width="60dp"
+                android:id="@+id/textDescriptionFormProduct"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Description" />
+                android:text="Descripcion" />
             <EditText
                 android:id="@+id/editDescriptionFormProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal">
-
             <TextView
-                android:id="@+id/tvPriceForm"
-                android:layout_width="60dp"
+                android:id="@+id/textPriceFormProduct"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Price" />
+                android:text="Precio" />
             <EditText
                 android:id="@+id/editPriceFormProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName" />
         </LinearLayout>
 
-            <Button
-                android:id="@+id/btnFormProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="insert" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnFormProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insertar" />
+    </LinearLayout>
 </LinearLayout>

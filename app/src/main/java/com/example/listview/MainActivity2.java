@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.listview.Adapters.ProductAdapter;
+import com.example.listview.DB.DBFirebase;
 import com.example.listview.DB.DbHelper;
 import com.example.listview.Entities.Product;
 import com.example.listview.Services.ProductService;
@@ -23,36 +24,38 @@ import java.util.ArrayList;
 
 
 public class MainActivity2 extends AppCompatActivity {
-
     private DbHelper dbHelper;
+    private DBFirebase dbFirebase;
     private ProductService productService;
-    private ListView listViewProduct;
+    private ListView listViewProducts;
     private ProductAdapter productAdapter;
-    private ArrayList<Product> arrayProducts;
+    private ArrayList<Product> arrayProductos;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        arrayProducts = new ArrayList<>();
-
+        arrayProductos = new ArrayList<>();
+        listViewProducts = (ListView) findViewById(R.id.listViewProducts);
         try {
             dbHelper = new DbHelper(this);
+            dbFirebase = new DBFirebase();
             productService = new ProductService();
-            arrayProducts = productService.cursorToArray(dbHelper.getProducts());
+            arrayProductos = productService.cursorToArray(dbHelper.getProducts());
+
         }catch (Exception e){
             Log.e("DB", e.toString());
         }
 
-        listViewProduct = (ListView) findViewById(R.id.listViewProducts);
-        productAdapter = new ProductAdapter(this,arrayProducts);
-        listViewProduct.setAdapter(productAdapter);
+        productAdapter = new ProductAdapter(this, arrayProductos);
+        listViewProducts.setAdapter(productAdapter);
+
+        dbFirebase.getProducts(productAdapter, arrayProductos);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 

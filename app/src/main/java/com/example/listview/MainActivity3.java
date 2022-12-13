@@ -20,43 +20,43 @@ import java.util.ArrayList;
 
 public class MainActivity3 extends AppCompatActivity {
     private DbHelper dbHelper;
-    private ProductService productService;
+    private ProductService productoService;
     private Button btnReturn;
     private ImageView imgDetail;
-    private TextView tvNameDetail;
-    private TextView tvDescriptionDetail;
-    private TextView tvPriceDetail;
-
+    private TextView tvNameDetail, tvDescriptionDetail, tvPriceDetail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
+        btnReturn = (Button) findViewById(R.id.btnReturn);
+        imgDetail = (ImageView) findViewById(R.id.imgDetail);
         tvNameDetail = (TextView) findViewById(R.id.tvNameDetail);
         tvDescriptionDetail = (TextView) findViewById(R.id.tvDescriptionDetail);
         tvPriceDetail = (TextView) findViewById(R.id.tvPriceDetail);
-        imgDetail = (ImageView) findViewById(R.id.imgDetail);
-        btnReturn = (Button) findViewById(R.id.btnReturn);
 
         dbHelper = new DbHelper(this);
-        productService = new ProductService();
+        productoService = new ProductService();
+
         Intent intent = getIntent();
         String id = String.valueOf(intent.getIntExtra("id",0));
-        ArrayList<Product> productDB = productService.cursorToArray(dbHelper.getProductsById(id));
+        ArrayList<Product> productDB = productoService.cursorToArray(dbHelper.getProductById(id));
         Product product = productDB.get(0);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(product.getImage(),0,product.getImage().length);
-        imgDetail.setImageBitmap(bitmap);
+
+        //Bitmap bitmap = BitmapFactory.decodeByteArray(producto.getImage(), 0, producto.getImage().length);
+        //imgDetail.setImageBitmap(bitmap);
+
 
         tvNameDetail.setText(intent.getStringExtra("name"));
         tvDescriptionDetail.setText(intent.getStringExtra("description"));
-        tvPriceDetail.setText(String.valueOf(intent.getIntExtra("price",0)));
+        tvPriceDetail.setText(String.valueOf(intent.getIntExtra("price", 0)));
 
 
         btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(getApplicationContext(),MainActivity2.class);
-                startActivity(intent1);
+                Intent intent2 = new Intent(getApplicationContext(), MainActivity2.class);
+                startActivity(intent2);
             }
         });
     }

@@ -1,34 +1,37 @@
 package com.example.listview.Entities;
 
+import java.util.UUID;
+
 public class Product {
-    private int id;
-    private byte[] image;
+    private String id;
     private String name;
     private String description;
     private int price;
+    private String image;
 
-    public Product(int id, byte[] image, String name, String description, int price) {
+    public Product(String id, String name, String description, int price, String image) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.description = description;
         this.price = price;
-
     }
 
-    public int getId() {
-        return id;
+    public Product(String name, String description, int price, String image) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getId(){return id;}
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

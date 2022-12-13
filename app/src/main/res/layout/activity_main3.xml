@@ -48,9 +48,7 @@
                 android:id="@+id/btnReturn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/text_product" />
-
+                android:text="Button" />
         </LinearLayout>
     </LinearLayout>
 

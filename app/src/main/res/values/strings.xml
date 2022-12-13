@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">Ice</string>
+    <string name="app_name">ListView</string>
 
-    // texts mainActivity
+    //Texts MainActivity
     <string name="text_btn_init">HOME</string>
-    <string name="text_product">HOME</string>
 
-    // texts mainActivity
-    <string name="text_title_home">Ice</string>
-    <string name="text_btnProduct1_home">Strawberry</string>
-    <string name="text_btnProduct2_home">Chocolate</string>
-    <string name="text_btnProduct3_home">Lemon</string>
+    //Texts MainActivity2
+    <string name="text_title_home">HOME</string>
+    <string name="text_btn_product1_home">INFO</string>
+    <string name="text_btn_product2_home">INFO</string>
+    <string name="text_btn_product3_home">INFO</string>
+    <string name="text_product1_home">Product 1</string>
+    <string name="text_product2_home">Product 2</string>
+    <string name="text_product3_home">Product 3</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
-    <string name="text_product1_home">INFO</string>
-    <string name="text_product2_home">INFO</string>
-    <string name="text_product3_home">INFO</string>
 </resources>

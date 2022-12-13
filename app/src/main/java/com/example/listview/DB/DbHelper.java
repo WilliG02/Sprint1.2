@@ -7,24 +7,25 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
-public class DbHelper extends SQLiteOpenHelper {
+import com.example.listview.Entities.Product;
 
+public class DbHelper extends SQLiteOpenHelper {
     private SQLiteDatabase sqLiteDatabase;
 
-    public DbHelper (Context context){
-        super(context, "DBIceCream", null, 1);
+    public DbHelper(Context context){
+        super(context, "G103.db", null, 1);
         sqLiteDatabase = this.getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE PRODUCTS("+
-                        "id INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                        "name VARCHAR,"+
-                        "description VARCHAR,"+
-                        "price VARCHAR,"+
-                        "image BLOB"+    // MAPA DE BITS
-                        ")");
+        db.execSQL( "CREATE TABLE PRODUCTS("+
+                "id TEXT PRIMARY KEY,"+
+                "name VARCHAR,"+
+                "description TEXT,"+
+                "price VARCHAR,"+
+                "image TEXT"+
+                ")");
     }
 
     @Override
@@ -32,40 +33,35 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS PRODUCTS");
     }
 
-    // METODOS CRUDS
-
-    // INSERT
-    public void insertProduct(String name, String description, String price, byte[] image){
-        String sql = "INSERT INTO PRODUCTS VALUES(null, ?, ?, ?, ?)";
+    //METODOS CRUD
+    public void insertProduct(Product product){
+        String sql = "INSERT INTO PRODUCTS VALUES(?, ?, ?, ?, ?)";
         SQLiteStatement statement = sqLiteDatabase.compileStatement(sql);
         statement.clearBindings();
 
-        statement.bindString(1, name);
-        statement.bindString(2, description);
-        statement.bindString(3, price);
-        statement.bindBlob(4, image);
+        statement.bindString(1, product.getId());
+        statement.bindString(2, product.getName());
+        statement.bindString(3, product.getDescription());
+        statement.bindString(4, String.valueOf(product.getPrice()));
+        statement.bindString(5, product.getImage());
 
         statement.executeInsert();
     }
 
-    // GET
-
     public Cursor getProducts(){
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS" , null) ;
-        return cursor;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS", null);
+        return  cursor;
     }
 
-    // Consult by Id
-    public Cursor getProductsById(String id){
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS WHERE id = "+id , null) ;
-        return cursor;
+    public Cursor getProductById(String id){
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PRODUCTS WHERE id = "+id, null);
+        return  cursor;
     }
 
     public void deleteProductById(String id){
-        sqLiteDatabase.execSQL("DELETE FROM PRODUCTS WHERE id = " + id);
+        sqLiteDatabase.execSQL("DELETE FROM PRODUCTS WHERE id = "+id);
     }
 
-    // UPDATE
     public void updateProduct(String id, String name, String description, String price, byte[] image){
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
