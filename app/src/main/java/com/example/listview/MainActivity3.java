@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.listview.DB.DBFirebase;
 import com.example.listview.DB.DbHelper;
 import com.example.listview.Entities.Product;
 import com.example.listview.Services.ProductService;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 public class MainActivity3 extends AppCompatActivity {
     private DbHelper dbHelper;
+    private DBFirebase dbFirebase;
     private ProductService productoService;
     private Button btnReturn;
     private ImageView imgDetail;
@@ -35,6 +37,7 @@ public class MainActivity3 extends AppCompatActivity {
         tvDescriptionDetail = (TextView) findViewById(R.id.tvDescriptionDetail);
         tvPriceDetail = (TextView) findViewById(R.id.tvPriceDetail);
 
+        dbFirebase = new DBFirebase();
         dbHelper = new DbHelper(this);
         productoService = new ProductService();
 

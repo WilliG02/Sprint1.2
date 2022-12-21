@@ -32,6 +32,8 @@ public class DBFirebase {
         prod.put("description", product.getDescription());
         prod.put("price", product.getPrice());
         prod.put("image", product.getImage());
+        prod.put("latitud", product.getLatitud());
+        prod.put("longitud", product.getLongitud());
 
         // Add a new document with a generated ID
         db.collection("products").add(prod);
@@ -51,7 +53,10 @@ public class DBFirebase {
                                         document.getData().get("name").toString(),
                                         document.getData().get("description").toString(),
                                         Integer.parseInt(document.getData().get("price").toString()),
-                                        document.getData().get("image").toString()
+                                        document.getData().get("image").toString(),
+                                        Double.parseDouble(document.getData().get("latitud").toString()),
+                                        Double.parseDouble(document.getData().get("longitud").toString())
+
                                 );
                                 list.add(product);
                             }
@@ -64,25 +69,37 @@ public class DBFirebase {
     }
 
     public void deleteProduct(String id){
-        db.collection("products")
-                .document(id)
-                .delete()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+        db.collection("products").whereEqualTo("id", id)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        //cualquier cosa
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                documentSnapshot.getReference().delete();
+                            }
+                        }
                     }
                 });
     }
 
     public void updateProduct(Product product){
-        db.collection("Establecimientos")
-                .document( String.valueOf(product.getId()))
-                .update(
-                        "name",product.getName(),
-                        "description",product.getDescription(),
-                        "price", product.getPrice(),
-                        "image", product.getImage()
-                );
+        db.collection("products").whereEqualTo("id", product.getId())
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                documentSnapshot.getReference().update(
+                                        "name", product.getName(),
+                                        "description", product.getDescription(),
+                                        "price", product.getPrice(),
+                                        "image", product.getImage(),
+                                        "latitud", product.getLatitud(),
+                                        "longitud", product.getLongitud()
+                                );
+                            }
+                        }
+                    }
+                });
     }
 }

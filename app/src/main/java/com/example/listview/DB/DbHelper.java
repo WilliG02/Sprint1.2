@@ -13,7 +13,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private SQLiteDatabase sqLiteDatabase;
 
     public DbHelper(Context context){
-        super(context, "G103.db", null, 1);
+        super(context, "IceCream.db", null, 1);
         sqLiteDatabase = this.getWritableDatabase();
     }
 
@@ -71,5 +71,4 @@ public class DbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.update("PRODUCTS", contentValues, "id = ?", new String[]{id});
     }
-
 }

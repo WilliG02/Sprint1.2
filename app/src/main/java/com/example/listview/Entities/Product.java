@@ -8,13 +8,17 @@ public class Product {
     private String description;
     private int price;
     private String image;
+    private Double latitud;
+    private Double longitud;
 
-    public Product(String id, String name, String description, int price, String image) {
+    public Product(String id, String name, String description, int price, String image, Double latitud, Double longitud) {
         this.id = id;
         this.image = image;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     public Product(String name, String description, int price, String image) {
@@ -22,7 +26,29 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.image = image;;
+        this.image = image;
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
     }
 
     public String getId(){return id;}

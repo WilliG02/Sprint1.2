@@ -13,5 +13,8 @@
     <string name="text_product2_home">Product 2</string>
     <string name="text_product3_home">Product 3</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="BtnRestarProducto">-</string>
+    <string name="BtnSumarProducto">+</string>
+    <string name="BtnComprarProducto">Agregar</string>
 
 </resources>
